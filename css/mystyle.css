@@ -160,5 +160,18 @@
   color:white
 }
 
+.no-result{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.no-result-text{
+  color: #283842;
+    text-align: center;
+    font-size: 2em;
+}
+
 
   

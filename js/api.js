@@ -12,7 +12,7 @@ $( "#update_construction" ).submit(function( event ) {
 var cityjson=null;
 var profession=['all','Plumber',"Carpentor","Electrician","Workers","Designer","Architect"];
 var materials=['all','Bricks','Paints','Plumbing materials','Hardwares',"Furnitures",'Tiles'];
-var empty_result="<h4>No result found</h4>"
+var empty_result="<div class='no-result-text' ><img class='no-result' src='images/no_result.jpg'> No result found </div>"
 $.getJSON( "admin/assets/json/cities.json", function( data ) {
      cityjson=data
      append_select(Object.keys(cityjson),"state");
@@ -116,7 +116,7 @@ function changelist(resp)
     '<div class="card">'+
     '<div class="card-body">'+
     '<h5 class="card-title">[name]</h5>'+
-    '<p class="card-text">[company]</p>'+
+    '<p class="card-text">[company], [city]</p>'+
     '<p class="card-text">[service]</p>'+
     '<button type="button" onClick="details_buttonClick([id])" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Get Details</button>'+
     '</div>'+
@@ -129,6 +129,7 @@ function changelist(resp)
             var tag_string= list_html.replace('[name]', resp.data[k].name)
             tag_string= tag_string.replace('[company]', resp.data[k].company_name)
             tag_string= tag_string.replace('[service]', resp.data[k].material)
+            tag_string= tag_string.replace('[city]', resp.data[k].city)
             tag_string= tag_string.replace('[id]', resp.data[k].id)
             var svg='images/materials/screwdriver.svg';
             if(resp.data[k].material in materials_icon)
@@ -148,6 +149,7 @@ function changelist(resp)
             tag_string= tag_string.replace('[company]', resp.data[k].company_name)
             tag_string= tag_string.replace('[service]', resp.data[k].service_type)
             tag_string= tag_string.replace('[id]', resp.data[k].owner_id)
+            tag_string= tag_string.replace('[city]', resp.data[k].city)
             var svg='images/workers/workers.svg';
             if(resp.data[k].service_type in worker_icon)
             {
@@ -204,4 +206,11 @@ function changemodel(response)
     $(".modal-body").append(model_body);
 }
 
+$( document ).ready(function() {
+    var type=$("#service-type").attr('name');
+    $(".list-container").empty();
+    var formData = new FormData();
+    formData.append('type', type);
+    var data=apicall('api_call.php','POST',formData,changelist);
+});
   
