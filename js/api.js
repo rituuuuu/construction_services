@@ -15,7 +15,9 @@ var materials=['all','Bricks','Paints','Plumbing materials','Hardwares',"Furnitu
 var empty_result="<div class='no-result-text' ><img class='no-result' src='images/no_result.jpg'> No result found </div>"
 $.getJSON( "admin/assets/json/cities.json", function( data ) {
      cityjson=data
-     append_select(Object.keys(cityjson),"state");
+     var option=['all'];
+     option=option.concat(Object.keys(cityjson))
+     append_select(option,"state");
 });
 
 append_select(profession,"profession");

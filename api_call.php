@@ -43,7 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $query=$query." and service_type='".$service."'";
             } 
             else{
-                $query=$query." and material='".$service."'";
+                if ((strpos($query, 'where') == false)) 
+                {
+                    $query=$query." where material='".$service."'";
+                }
+                else
+                {
+                    $query=$query." and material='".$service."'";
+                }
+                
             }
         }
         $result = $con->query($query);
