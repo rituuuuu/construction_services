@@ -108,25 +108,26 @@ var worker_icon={'Plumber':'images/workers/plumber.svg','Carpentor':'images/work
 
 function changelist(resp)
 {
-    var list_html='<div class="row tile">'+
-    '<div class="col-sm-2">'+
-    '<div class="tile-icon">'+
-    '<img class="tile-icon-image" src="[icon_svg]" alt="">'+
-    '</div>'+
-    '</div>'+
-    '<div class="col-sm-10">'+
-    '<div class="card">'+
-    '<div class="card-body">'+
-    '<h5 class="card-title">[name]</h5>'+
-    '<p class="card-text">[company], [city]</p>'+
-    '<p class="card-text">[service]</p>'+
-    '<button type="button" onClick="details_buttonClick([id])" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Get Details</button>'+
-    '</div>'+
-    '</div>'+
-    '</div>'+'</div>';
+    
     var type=$("#service-type").attr('name');
     if(type=='material')
     {
+        var list_html='<div class="row tile">'+
+        '<div class="col-sm-2">'+
+        '<div class="tile-icon">'+
+        '<img class="tile-icon-image" src="[icon_svg]" alt="">'+
+        '</div>'+
+        '</div>'+
+        '<div class="col-sm-10">'+
+        '<div class="card">'+
+        '<div class="card-body">'+
+        '<h5 class="card-title">[name]</h5>'+
+        '<p class="card-text">[company], [city]</p>'+
+        '<p class="card-text">[service]</p>'+
+        '<button type="button" onClick="details_buttonClick([id])" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Get Details</button>'+
+        '</div>'+
+        '</div>'+
+        '</div>'+'</div>';
         for(var k in resp.data) {
             var tag_string= list_html.replace('[name]', resp.data[k].name)
             tag_string= tag_string.replace('[company]', resp.data[k].company_name)
@@ -145,6 +146,23 @@ function changelist(resp)
     }
     else if(type='worker')
     {
+        var list_html='<div class="row tile">'+
+        '<div class="col-sm-2">'+
+        '<div class="tile-icon">'+
+        '<img class="tile-icon-image" src="[icon_svg]" alt="">'+
+        '</div>'+
+        '</div>'+
+        '<div class="col-sm-10">'+
+        '<div class="card">'+
+        '<div class="card-body">'+
+        '<h5 class="card-title">[name]</h5>'+
+        '<p class="card-text">[company], [city]</p>'+
+        '<p class="card-text">[service]</p>'+
+        '<p class="card-text">Charges: [price] ₹</p>'+
+        '<button type="button" onClick="details_buttonClick([id])" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Get Details</button>'+
+        '</div>'+
+        '</div>'+
+        '</div>'+'</div>';
         console.log(resp.data);
         for(var k in resp.data) {
             var tag_string= list_html.replace('[name]', resp.data[k].owner_name)
@@ -152,6 +170,7 @@ function changelist(resp)
             tag_string= tag_string.replace('[service]', resp.data[k].service_type)
             tag_string= tag_string.replace('[id]', resp.data[k].owner_id)
             tag_string= tag_string.replace('[city]', resp.data[k].city)
+            tag_string= tag_string.replace('[price]', resp.data[k].price)
             var svg='images/workers/workers.svg';
             if(resp.data[k].service_type in worker_icon)
             {

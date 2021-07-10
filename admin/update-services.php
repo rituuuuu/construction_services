@@ -16,8 +16,9 @@ if(isset($_POST['dealer_form']))
 	$contact_number=$_POST['contact_number'];
 	$email=$_POST['email'];
 	$state=$_POST['state'];
+	$price=$_POST['price'];
     $id=intval($_GET['id']);
-$query="update service_owner set owner_name='$owner_name' ,company_name='$company_name' , city='$city',service_type='$service_type' ,contact_number='$contact_number' , email='$email',state='$state' where owner_id='$id'";
+$query="update service_owner set owner_name='$owner_name' ,company_name='$company_name' , city='$city',service_type='$service_type' ,contact_number='$contact_number' , email='$email',state='$state',price='$price' where owner_id='$id'";
 if ($con->query($query) === TRUE) {
     $_SESSION['msg']="Profile Updated successfully";
 }
@@ -112,6 +113,10 @@ if ($con->query($query) === TRUE) {
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" value='<?php echo($data['email'])?>' id="email" placeholder="Enter Email ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Charge Per hour</label>
+                                    <input type="number" class="form-control" name="price" value='<?php echo($data['price'])?>' id="price" placeholder="Enter Amount in Indian Rupees" required>
                                 </div>
                                 <button type="submit" name='dealer_form' class="btn btn-primary">Submit</button>
                             </form>

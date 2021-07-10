@@ -44,6 +44,7 @@ $construction_data=$con->query("select * from service_owner;")->fetch_all(MYSQLI
                               <th>Company</th>
                               <th>City</th>
                               <th>Profession</th>
+                              <th>Charge Per hour</th>
                               <th>Actions</th>
                           </tr>
                       </thead>
@@ -71,6 +72,7 @@ $construction_data=$con->query("select * from service_owner;")->fetch_all(MYSQLI
         {"data":"company_name"},
         {"data":"city"},
         {"data":"service_type"},
+        {"data":"price"},
         {"data":"button"},
       ],
     } ); 

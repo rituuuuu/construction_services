@@ -54,6 +54,7 @@ function dealer($con,$empQuery)
             "city"=>$row['city'],
             "contact_number"=>$row['contact_number'],
             "email"=>$row['email'],
+            "price"=>$row['price'],
             "button"=>"<a href='update-services.php?id=".$row['owner_id']."&type=dealer'><i id=".$row['owner_id']." class='fa fa-reply-all action-icon-update action-icon'></i></a><i id=".$row['owner_id']." class='fa fa-times action-icon-delete action-icon' ></i>",
          );
       }

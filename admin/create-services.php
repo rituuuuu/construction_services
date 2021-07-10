@@ -15,7 +15,8 @@ if (strlen($_SESSION['id']==0)) {
         $contact_number=$_POST['contact_number'];
         $email=$_POST['email'];
         $state=$_POST['state'];
-    $query="insert into service_owner (owner_name,company_name,city,service_type,contact_number,email,state) values('$owner_name','$company_name','$city','$service_type',$contact_number,'$email','$state')";
+        $price=$_POST['price'];
+    $query="insert into service_owner (owner_name,company_name,city,service_type,contact_number,email,state,price) values('$owner_name','$company_name','$city','$service_type',$contact_number,'$email','$state','$price')";
     if ($con->query($query) === TRUE) {
         $_SESSION['msg']="Profile Updated successfully";
     }
@@ -109,6 +110,10 @@ header('location:construction_materials.php');
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Charge Per Hour</label>
+                                    <input type="number" class="form-control" name="price" id="price" placeholder="Enter Amount" required>
                                 </div>
                                 <button type="submit" name='dealer_create_form' class="btn btn-primary">Submit</button>
                             </form>
